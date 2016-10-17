@@ -39,6 +39,7 @@ en:
       Contact: "Contact"
       Contact the Ruby on Rails Tutorial about the sample app at the:
         "Contact the Ruby on Rails Tutorial about the sample app at the"
+      Contact Page: "Contact Page"
     help:
       Help: "Help"
       Get Help On The Ruby On Rails Tutorial At The:
@@ -53,10 +54,20 @@ en:
       Ruby on Rails Tutorial: "Ruby on Rails Tutorial"
       sample application: "sample application"
       Sign up now!: "Sign up now!"
-  Contact Page: "Contact Page"
   users:
     new:
-      Signin: "Sign in"
+      Sign up: "Sign up"
       New: "New"
+      Create my account: "Create my account"
+      Confirmation: "Confirmation"
+    create:
+      Welcome to the Sample App!: "Welcome to the Sample App!"
+      Please, try again!: "Please, try again!"
+  sessions:
+    new:
+      Log in: "Log in"
+      Sign up now!: "Sign up now!"
+    create:
+      Invalid email/password combination: "Invalid email/password combination"
 
 
