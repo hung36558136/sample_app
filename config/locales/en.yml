@@ -1,26 +1,6 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# To learn more, please read the Rails Internationalization guide
-# available at http://guides.rubyonrails.org/i18n.html.
-
 en:
   hello: "Hello world"
+
   layouts:
     footer:
       About: "About"
@@ -34,6 +14,9 @@ en:
       Help: "Help"
       Login: "Log in"
       sample app: "sample app"
+      Profile: "Profile"
+      Settings: "Settings"
+
   static_pages:
     contact:
       Contact: "Contact"
@@ -54,6 +37,7 @@ en:
       Ruby on Rails Tutorial: "Ruby on Rails Tutorial"
       sample application: "sample application"
       Sign up now!: "Sign up now!"
+
   users:
     new:
       Sign up: "Sign up"
@@ -63,11 +47,39 @@ en:
     create:
       Welcome to the Sample App!: "Welcome to the Sample App!"
       Please, try again!: "Please, try again!"
+    edit:
+      Save changes: "Save changes"
+      change: "change"
+      Confirmation: "Confirmation"
+    index:
+      All users: "All Users"
+
   sessions:
     new:
       Log in: "Log in"
       Sign up now!: "Sign up now!"
+      forgot password: "(forgot password)"
+      Remember me on this computer: "Remember me on this computer"
     create:
       Invalid email/password combination: "Invalid email/password combination"
 
+  password_resets:
+    create:
+      Email sent with password reset instructions:
+        "Email sent with password reset instructions"
+      Email address not found: "Email address not found"
+    update:
+      can't be empty: "can't be empty"
+      Password has been reset: "Password has been reset"
+    check_expiration:
+      Password reset has expired: "Password reset has expired."
+    new:
+      Submit: "Submit"
+
+  user_mailer:
+    password_reset:
+      Password reset: "Password Reset"
+      To reset your password click the link below:
+        "To reset your password click the link below:"
+      Reset password: "Reset password"
 

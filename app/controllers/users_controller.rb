@@ -1,6 +1,11 @@
 class UsersController < ApplicationController
+  before_action :confirms_login_user, except: [:show, :create, :new]
+  before_action :confirms_correct_user, only: [:edit, :update]
+  before_action :admin_user, only: :destroy
+  before_action :load_user, only: [:show, :edit, :update]
 
   def index
+    @users = User.paginate(page: params[:page])
   end
 
   def new
@@ -8,18 +13,28 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find_by id: params[:id]
   end
 
   def create
     @user = User.new user_params
     if @user.save
-      log_in @user
-      flash[:success] = t ".Welcome to the Sample App!"
+      UserMailer.account_activation(@user).deliver_now
+      flash[:info] = t ".Please check your email to activate your account."
+      redirect_to root_url
+    else
+      render :new
+    end
+  end
+
+  def edit
+  end
+
+  def update
+    if @user.update_attributes(user_params)
+      flash[:success] = t ".Profile updated"
       redirect_to @user
     else
-      flash[:fail] = t ".Please, try again!"
-      render :new
+      render :edit
     end
   end
 
@@ -27,6 +42,29 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user)
-      .permit :name, :email, :password, :password_confirmation
+      .permit(:name, :email, :password, :password_confirmation)
+  end
+
+  def confirms_login_user
+    unless logged_in?
+      store_location
+      flash[:danger] = t ".Please log in."
+      redirect_to login_url
+    end
+  end
+
+  def confirms_correct_user
+    @user = User.find_by id: params[:id]
+    redirect_to(root_url) unless current_user?(@user)
+  end
+
+  def destroy
+    User.find_by(id: params[:id]).destroy
+    flash[:success] = t ".User deleted"
+    redirect_to users_url
+  end
+
+  def admin_user
+    redirect_to(root_url) unless current_user.admin?
   end
 end
