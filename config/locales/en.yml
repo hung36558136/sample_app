@@ -21,6 +21,7 @@
 
 en:
   hello: "Hello world"
+
   layouts:
     footer:
       About: "About"
@@ -34,6 +35,7 @@ en:
       Help: "Help"
       Login: "Log in"
       sample app: "sample app"
+
   static_pages:
     contact:
       Contact: "Contact"
@@ -54,6 +56,7 @@ en:
       Ruby on Rails Tutorial: "Ruby on Rails Tutorial"
       sample application: "sample application"
       Sign up now!: "Sign up now!"
+
   users:
     new:
       Sign up: "Sign up"
@@ -63,6 +66,10 @@ en:
     create:
       Welcome to the Sample App!: "Welcome to the Sample App!"
       Please, try again!: "Please, try again!"
+    edit:
+      Save changes: "Save changes"
+      change: "change"
+
   sessions:
     new:
       Log in: "Log in"

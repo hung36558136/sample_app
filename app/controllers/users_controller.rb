@@ -1,6 +1,10 @@
 class UsersController < ApplicationController
+  before_action :confirms_login_user, only: [:index, :edit, :update, :destroy]
+  before_action :confirms_correct_user, only: [:edit, :update]
+  before_action :admin_user, only: :destroy
 
   def index
+    @users = User.paginate(page: params[:page])
   end
 
   def new
@@ -18,8 +22,21 @@ class UsersController < ApplicationController
       flash[:success] = t ".Welcome to the Sample App!"
       redirect_to @user
     else
-      flash[:fail] = t ".Please, try again!"
       render :new
+    end
+  end
+
+  def edit
+    @user = User.find_by id: params[:id]
+  end
+
+  def update
+    @user = User.find_by id: params[:id]
+    if @user.update_attributes(user_params)
+      flash[:success] = "Profile updated"
+      redirect_to @user
+    else
+      render :edit
     end
   end
 
@@ -27,6 +44,29 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user)
-      .permit :name, :email, :password, :password_confirmation
+      .permit(:name, :email, :password, :password_confirmation)
+  end
+
+  def confirms_login_user
+    unless logged_in?
+      store_location
+      flash[:danger] = "Please log in."
+      redirect_to login_url
+    end
+  end
+
+  def confirms_correct_user
+    @user = User.find_by id: params[:id]
+    redirect_to(root_url) unless current_user?(@user)
+  end
+
+  def destroy
+    User.find_by(id: params[:id]).destroy
+    flash[:success] = "User deleted"
+    redirect_to users_url
+  end
+
+  def admin_user
+    redirect_to(root_url) unless current_user.admin?
   end
 end

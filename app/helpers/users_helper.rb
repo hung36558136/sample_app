@@ -1,7 +1,8 @@
 module UsersHelper
-  def gravatar_for user
+  def gravatar_for user, options = {size: 80}
     gravatar_id = Digest::MD5::hexdigest user.email.downcase
-    gravatar_url = "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Deathly_Hallows_Sign.svg/150px-Deathly_Hallows_Sign.svg.png"
+    size = options[:size]
+    gravatar_url = "https://secure.gravatar.com/avatar/#{gravatar_id}?s=#{size}"
     image_tag gravatar_url, alt: user.name, class: "gravatar"
   end
 
